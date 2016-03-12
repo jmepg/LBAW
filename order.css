@@ -1,0 +1,18 @@
+.navbar{
+    background-color: red;
+}
+
+.navbar a{
+    color:white;
+}
+
+.navbar .navbar-nav > .open > a,
+.navbar .navbar-nav > .open > a:focus,
+.navbar .navbar-nav > .open > a:active,
+.navbar .navbar-nav > .open > a:hover {
+    background-color: red;
+}
+
+.image{
+    height: 150px;
+}

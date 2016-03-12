@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="order.css">
+    <title>NetBrews</title>
+
+</head>
+
+<body>
+    <nav class="navbar" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">NetBrews</a>
+
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbar-collapse-1">
+
+            <ul class="nav navbar-nav" data-hover="dropdown">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+               Wines 
+               <b class = "caret"></b>
+            </a>
+
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Red</a></li>
+                        <li><a href="#">White</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+               Beers 
+               <span class = "caret"></span>
+            </a>
+
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Ales</a></li>
+                        <li><a href="#">Lagers</a></li>
+                        <li><a href="#">Stouts & Porters</a></li>
+                        <li><a href="#">Malts</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+               Spirits 
+               <span class = "caret"></span>
+            </a>
+
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Whisky</a></li>
+                        <li><a href="#">Vodka</a></li>
+                        <li><a href="#">Rum</a></li>
+                        <li><a href="#">Digestives</a></li>
+
+                    </ul>
+                </li>
+                <li><a href="#"> Ciders </a> </li>
+
+
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <a class="nav navbar-nav navbar-left" href="#">
+                    <img src="shop.png" alt="Shopping cart" width="30" height="30">
+                </a>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+               Barack Obama
+               <span class = "caret"></span>
+            </a>
+
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Your Account</a></li>
+                        <li><a href="#">Lougout</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <form class="navbar-form navbar-right">
+                        <!--  <span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-search"></i></span> -->
+                        <input type="text" class="form-control" placeholder="Search" name="q">
+                    </form>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <h3> Your Cart </h3></div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3 col-xs-3">
+                            <a href="#">
+                                <img src="Utils/absolut_vodka.png" id="img" class="img-rounded img-responsive center-block image" alt="Absolut">
+                            </a>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-3">
+                            <a href="#"> Absolut Vodka  </a>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-3 form">
+                            <input type="text" class="form-control" placeholder="Quant" name="Quantity">
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-3 text-center">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                                    <h4><dt>9.99€</dt></h4>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6 text-left">
+                                    <h4>/item</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3 col-xs-3">
+                            <a href="#">
+                                <img src="Util/somersby.png" class="img-rounded img-responsive center-block image" alt="Somersby">
+                            </a>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-3">
+                            <a href="#" text-center> Somersby  </a>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-3 form">
+                            <input type="text" class="form-control" placeholder="Quant" name="Quantity">
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-3 text-center">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                                    <h4><dt>1.29</dt></h4>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6 text-left">
+                                    <h4>/item</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="col-md-10 col-sm-10 col-xs-10"> </div>
+                        <div class="col-md-1 col-sm-1 col-xs-1">
+                            <h4> Total: </h4>
+                        </div>
+                        <div class="col-md-1 col-sm-1 col-xs-1">
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <h3> Purchase Options </h3></div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4 col-xs-4">
+                            <h4> Shipping Address:</h4>
+                        </div>
+                        <div class="col-md-8 col-sm-8 col-xs-8">
+                            <input type="text" class="form-control" placeholder="Enter Shipping Address" name="q">
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4 col-xs-4">
+                            <h4> Payment Method:</h4>
+                        </div>
+                        <div class="col-md-4 col-sm-8 col-xs-8">
+                            <select class="form-control ">
+                                 <option value="PayPal">PayPal</option>
+                                 <option value="MasterCard">MasterCard</option>
+                                 <option value="At Delivery">At Delivery</option>
+
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                 <div class="panel-footer">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <button type="button" class="btn btn-danger pull-right">Complete Purchase</button>
+                            
+                        </div>
+                    </div>
+                 </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.js"></script>
+</body>
+
+</html>
