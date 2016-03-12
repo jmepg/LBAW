@@ -18,9 +18,13 @@
     background-color: #428bca;
 }
 
-
-
-
 .panel:hover {
   box-shadow:2px 2px 2px rgba(0, 0, 0, 0.5);
 }
+
+#highlights-carousel{
+    width: auto;
+    height: 400px;
+    max-width: 100%;
+}
+
