@@ -11,10 +11,11 @@
 .navbar .navbar-nav > .open > a:active,
 .navbar .navbar-nav > .open > a:hover {
     background-color: red;
+
 }
 
 .nav-sidebar > .active > a, .nav-sidebar > .active > a:hover, .nav-sidebar > .active > a:focus {
-    color: #fff;
+    color: red;
     background-color: #428bca;
 }
 

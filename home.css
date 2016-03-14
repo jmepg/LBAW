@@ -14,7 +14,7 @@
 }
 
 .nav-sidebar > .active > a, .nav-sidebar > .active > a:hover, .nav-sidebar > .active > a:focus {
-    color: #fff;
+    color: red;
     background-color: #428bca;
 }
 
