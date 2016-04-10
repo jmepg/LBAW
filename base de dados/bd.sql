@@ -26,6 +26,10 @@ CREATE TABLE ClienteRegistado(
 	compras anteriores array /*não sei se funca*/
 );
 
+ALTER TABLE ClienteRegistado(
+ADD CHECK(dataDeNascimento>0) 
+)
+
 DROP TABLE if exists ClientePremium;
 CREATE TABLE ClientePremium(
 	userId REFERENCES ClienteRegistado(userId) ON DELETE CASCADE,
@@ -41,7 +45,8 @@ CREATE TABLE Produto(
 	descricao TEXT NOT NULL, 
 	alcool FLOAT NOT NULL, 
 	volume FLOAT NOT NULL,
-	stock FLOAT NOT NULL	
+	stock FLOAT NOT NULL,
+    tipoId FOREIGN KEY REFERENCES TipoDeProduto(tipoId)	
 );
 
 ALTER TABLE Produto 
@@ -54,8 +59,8 @@ ADD CHECK(volume >0)
 DROP TABLE if exists Comentario;
 CREATE TABLE Comentario(
 	comentarioid INTEGER  AUTO_INCREMENT PRIMARY KEY,	
-	userId REFERENCES ClienteRegistado(userId) ON DELETE CASCADE,
-	produtoId REFERENCES Produto(produtoId),
+	userId FOREIGN KEY REFERENCES ClienteRegistado(userId) ON DELETE CASCADE,
+	produtoId FOREIGN KEY REFERENCES Produto(produtoId),
 	texto TEXT NOT NULL
 );
 
@@ -93,8 +98,13 @@ ratingId FOREIGN KEY REFERENCES Rating(ratingId)
 CREATE TABLE Quantidade
 (
 quantidadeId INTEGER AUTO_INCREMENT PRIMARY KEY,
-numero INTEGER CHECK(numero >0),
+numero INTEGER,
 produtoId REFERENCES Produto(produtoId)    
+);
+
+ALTER TABLE Quantidade
+(
+ADD CHECK(numero>0)    
 );
 
 ALTER TABLE Quantidade
@@ -120,7 +130,6 @@ DROP TABLE if exists Compra;
 CREATE TABLE Compra(
 	compraId INTEGER AUTO_INCREMENT PRIMARY KEY,
 	userId FOREIGN KEY REFERENCES ClienteRegistado(userId) ON DELETE CASCADE,
-	carrinhoId FOREIGN KEY REFERENCES Carrinho(carrinhoId)
 );
 
 DROP TABLE if exists Compra_Produto;
@@ -129,6 +138,14 @@ CREATE TABLE Compra_Produto
 compraId FOREIGN KEY REFERENCES Compra(compraId),
 produtoId FOREIGN KEY REFERENCES Produto(password)    
 ); 
+
+DROP TABLE if exists Compra_Carrinho;
+CREATE TABLE Compra_Carrinho
+(
+compraId INTEGER FOREIGN KEY REFERENCES Compra(compraId),
+carrinhoId INTEGER FOREIGN KEY REFERENCES Carrinho(carrinhoId)   
+);
+
 
 DROP TABLE if exists TipoDePagamento;
 CREATE TABLE TipoDePagamento(
