@@ -61,6 +61,7 @@ CREATE TABLE Comentario(
 	comentarioid INTEGER  AUTO_INCREMENT PRIMARY KEY,	
 	userId FOREIGN KEY REFERENCES ClienteRegistado(userId) ON DELETE CASCADE,
 	produtoId FOREIGN KEY REFERENCES Produto(produtoId),
+    data DATE NOT NULL,
 	texto TEXT NOT NULL
 );
 
