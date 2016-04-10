@@ -5,15 +5,15 @@ PRAGMA foreign_keys = ON;
 DROP TABLE if exists Utilizador;
 CREATE TABLE Utilizador(
     
-	userId INTEGER AUTO_INCREMENT PRIMARY KEY,
-    username TEXT UNIQUE,
-	password TEXT NOT NULL,
+	userId SERIAL AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR UNIQUE,
+	password VARCHAR NOT NULL,
 );
 
 DROP TABLE if exists Administrador;
 CREATE TABLE Administrador
 (
-userId INTEGER FOREIGN KEY REFERENCES Utilizador(userId)
+userId FOREIGN KEY REFERENCES Utilizador(userId)
 );
 
 DROP TABLE if exists ClienteRegistado;
@@ -23,7 +23,6 @@ CREATE TABLE ClienteRegistado(
 	email TEXT NOT NULL,
 	dataDeNascimento DATE NOT NULL,
 	userState TEXT NOT NULL, 
-	compras anteriores array /*não sei se funca*/
 );
 
 ALTER TABLE ClienteRegistado(
@@ -38,7 +37,7 @@ CREATE TABLE ClientePremium(
 
 DROP TABLE if exists Produto;
 CREATE TABLE Produto(
-	produtoId INTEGER AUTO_INCREMENT PRIMARY KEY,
+	produtoId SERIAL AUTO_INCREMENT PRIMARY KEY,
 	nome TEXT NOT NULL,
 	imagem TEXT NOT NULL,
 	preco FLOAT NOT NULL,
@@ -58,7 +57,7 @@ ADD CHECK(volume >0)
 
 DROP TABLE if exists Comentario;
 CREATE TABLE Comentario(
-	comentarioid INTEGER  AUTO_INCREMENT PRIMARY KEY,	
+	comentarioid SERIAL  AUTO_INCREMENT PRIMARY KEY,	
 	userId FOREIGN KEY REFERENCES ClienteRegistado(userId) ON DELETE CASCADE,
 	produtoId FOREIGN KEY REFERENCES Produto(produtoId),
     data DATE NOT NULL,
@@ -68,21 +67,21 @@ CREATE TABLE Comentario(
 
 DROP TABLE if exists TipoDeProduto;
 CREATE TABLE TipoDeProduto(
-    tipoId INTEGER AUTO_INCREMENT PRIMARY KEY,
+    tipoId SERIAL AUTO_INCREMENT PRIMARY KEY,
 	produtoId REFERENCES Produto(produtoId),
 	tipo TEXT NOT NULL
 );
 
 DROP TABLE if exists Pais;
 CREATE TABLE Pais(
-    paisId INTEGER AUTO_INCREMENT PRIMARY KEY,
+    paisId SERIAL AUTO_INCREMENT PRIMARY KEY,
 	produtoId REFERENCES Produto(produtoId),
 	pais TEXT NOT NULL
 );
 
 DROP TABLE if exists Rating;
 CREATE TABLE Rating(
-	ratingId INTEGER AUTO_INCREMENT PRIMARY KEY,
+	ratingId SERIAL AUTO_INCREMENT PRIMARY KEY,
 	userId REFERENCES ClientePremium(userId) ON DELETE CASCADE,
 	produtoId REFERENCES Produto(produtoId),
 	rate FLOAT NOT NULL
@@ -98,7 +97,7 @@ ratingId FOREIGN KEY REFERENCES Rating(ratingId)
 
 CREATE TABLE Quantidade
 (
-quantidadeId INTEGER AUTO_INCREMENT PRIMARY KEY,
+quantidadeId SERIAL AUTO_INCREMENT PRIMARY KEY,
 numero INTEGER,
 produtoId REFERENCES Produto(produtoId)    
 );
@@ -115,21 +114,21 @@ ADD CHECK(numero >0),
 
 DROP TABLE if exists Carrinho;
 CREATE TABLE Carrinho(
-	carrinhoId INTEGER PRIMARY KEY,
+	carrinhoId SERIAL PRIMARY KEY,
 	userId REFERENCES ClienteRegistado(userId) ON DELETE CASCADE,
 );
 
 DROP TABLE if exists Carrinho_Produto;
 CREATE TABLE Carrinho_Produto
 (
-carrinhoId INTEGER FOREIGN KEY References Carrinho(carrinhoId),
-produtoId INTEGER FOREIGN KEY References Produto(produtoId)
+carrinhoId FOREIGN KEY References Carrinho(carrinhoId),
+produtoId FOREIGN KEY References Produto(produtoId)
 );
 
 
 DROP TABLE if exists Compra;
 CREATE TABLE Compra(
-	compraId INTEGER AUTO_INCREMENT PRIMARY KEY,
+	compraId SERIAL AUTO_INCREMENT PRIMARY KEY,
 	userId FOREIGN KEY REFERENCES ClienteRegistado(userId) ON DELETE CASCADE,
 );
 
@@ -143,8 +142,8 @@ produtoId FOREIGN KEY REFERENCES Produto(password)
 DROP TABLE if exists Compra_Carrinho;
 CREATE TABLE Compra_Carrinho
 (
-compraId INTEGER FOREIGN KEY REFERENCES Compra(compraId),
-carrinhoId INTEGER FOREIGN KEY REFERENCES Carrinho(carrinhoId)   
+compraId FOREIGN KEY REFERENCES Compra(compraId),
+carrinhoId FOREIGN KEY REFERENCES Carrinho(carrinhoId)   
 );
 
 
