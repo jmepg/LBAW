@@ -25,9 +25,6 @@ CREATE TABLE ClienteRegistado(
 	userState TEXT NOT NULL, 
 );
 
-ALTER TABLE ClienteRegistado(
-ADD CONSTRAINT dataValida CHECK(dataDeNascimento>0) 
-)
 
 DROP TABLE if exists ClientePremium;
 CREATE TABLE ClientePremium(
@@ -68,9 +65,9 @@ CREATE TABLE Comentario(
 DROP TABLE if exists TipoDeProduto;
 CREATE TABLE TipoDeProduto(
     tipoId SERIAL AUTO_INCREMENT PRIMARY KEY,
-	produtoId REFERENCES Produto(produtoId),
 	tipo TEXT NOT NULL
 );
+
 
 DROP TABLE if exists Pais;
 CREATE TABLE Pais(
@@ -155,13 +152,55 @@ CREATE TABLE TipoDeEnvio(
 	tipo TEXT NOT NULL
 );
 
-CREATE TABLE TipoDeEnvio
-(
-compraId FOREIGN KEY Compra(compraId),
-tipo TEXT NOT NULL    
-);
 
-/*INDEXES*/n
+
+/*SELECTS*/
+
+/*Buscar o conjunto username-password*/
+SELECT username,password FROM Utilizador;
+
+/*Produto*/
+SELECT * FROM Produto;
+
+
+/* Produto-Preco*/
+SELECT nome,preco FROM Produto;
+
+/*Selecionar toda a informação sobre o cliente que faz um dado comentario*/
+SELECT ClienteRegistado.*, Comentario.texto FROM Comentario,ClienteRegistado 
+WHERE Comentario.userId = ClienteRegistado.userId;
+
+/*Selecionar info de Clientes Registados*/
+SELECT * FROM Utilizador, ClienteRegistado
+WHERE Utilizador.userId = ClienteRegistado.userId;
+
+/*Selecionar info de ClientePremium*/
+SELECT * FROM Utilizador, ClienteRegistado, ClientePremium
+WHERE (Utilizador.userId = ClienteRegistado.userId) AND (Utilizador.userId = ClientePremium.userId);
+
+/*Selecionar Produtos com igual TIPO*/
+SELECT Produto.nome,TipoDeProduto.tipo FROM Produto,TipoDeProduto
+WHERE (Produto.tipoId = TipoDeProduto.tipoId); 
+
+/*Selecionar quantidade do produto*/
+SELECT Quantidade.numero, Produto.* FROM Quantidade, Produto,
+WHERE (Quantidade.produtoId = Produto.produtoId);
+
+/*Selecionar produtos do Carrinho*/
+SELECT Produto.* FROM Carrinho, Carrinho_Produto, Produto
+WHERE (Produto.produtoId = Carrinho_Produto.produtoId) AND (Carrinho_Produto.carrinhoId = Carrinho.carrinhoId)
+
+
+/*Selecionar produtos da Compra*/
+SELECT Produto.* FROM Compra, Compra_Produto, Produto
+WHERE (Produto.produtoId = Compra_Produto.produtoId) AND (Compra_Produto.compraId = Compra.compraId);
+
+/*Selecionar carrinho do cliente*/
+SELECT Carrinho.* FROM ClienteRegistado 
+WHERE ClienteRegistado.userId = Carrinho.userId;
+
+/*Selecionar carrinho da Compra*/
+/*INDEXES*/
 
 CREATE CLUSTERED INDEX 
 
