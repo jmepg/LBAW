@@ -212,10 +212,18 @@ WHERE Carrinho_Produto.produtoId = Quantidade.produtoId;
 DELETE * FROM Rating 
 WHERE Produto.produtoId = Rating.produtoId;
 
-/**/
 
+/*UPDATES*/
 
+/*Update nome e email de um cliente*/
+UPDATE ClienteRegistado, Utilizador SET (nome, email) =
+    (SELECT nome, email FROM ClienteRegistado
+     WHERE Utilizador.id = ClienteRegistado.sales_id);
 
+/*Update de rating de um produto*/
+UPDATE Rating, Produto SET (rate) =
+    (SELECT rate FROM Rating
+     WHERE Rating.produtoId = Produto.produtoId);
 
 /*INDEXES*/
 
