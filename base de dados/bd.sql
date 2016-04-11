@@ -139,12 +139,14 @@ CREATE TABLE Compra_Carrinho
 
 DROP TABLE if exists TipoDePagamento;
 CREATE TABLE TipoDePagamento(
+    tipoId SERIAL PRIMARY KEY,
 	compraId FOREIGN KEY REFERENCES Compra(compraId),
 	tipo TEXT NOT NULL
 );
 
 DROP TABLE if exists TipoDeEnvio;
 CREATE TABLE TipoDeEnvio(
+    tipoId SERIAL PRIMARY KEY,
 	compraId FOREIGN KEY REFERENCES Compra(compraId),
 	tipo TEXT NOT NULL
 );
@@ -200,22 +202,72 @@ WHERE ClienteRegistado.userId = Carrinho.userId;
 SELECT Produto* FROM Produto, Pais
 WHERE Produto.paisId = Pais.paisId;
 
+/*DELETES*/
+
+/*Eliminar quantidade escolhida de um dado produto*/
+DELETE Carrinho_Produto.produtoId,Quantidade.* FROM Quantidade,
+WHERE Carrinho_Produto.produtoId = Quantidade.produtoId;
+
+/*Eliminar Ratings de um dado produto*/
+DELETE * FROM Rating 
+WHERE Produto.produtoId = Rating.produtoId;
+
+/**/
+
+
+
+
 /*INDEXES*/
 
-CREATE CLUSTERED INDEX 
-
-DROP INDEX Utilizador.IND_USERNAME_PASSWORD;
-CREATE INDEX IND_USERNAME_PASSWORD
-ON Utilizador (password);
-
-DROP INDEX Produto.IND_PRODUTO_PRECO;
-CREATE INDEX IND_PRODUTO_PRECO
-on Produto(preco);
-
-CREATE INDEX IND_COMENTARIO_TEXT
-on Comentario(texto);
+DROP INDEX Utilizador.Ind_Prim_Utilizador;
+CREATE INDEX Ind_Prim_Utilizador
+ON Utilizador(userId);
 
 
+
+DROP INDEX Produto.Ind_Prim_Produto;
+CREATE INDEX Ind_Prim_Produto
+on Produto(produtoId);
+
+DROP INDEX Comentario.Ind_Prim_Comentario;
+CREATE INDEX Ind_Prim_Comentario
+on Comentario(comentarioid);
+
+DROP INDEX TipoDeProduto.Ind_Prim_TipoDeProduto;
+CREATE INDEX Ind_Prim_TipoDeProduto
+on TipoDeProduto(tipoId);
+
+DROP INDEX Pais.Ind_Prim_Pais;
+CREATE INDEX Ind_Prim_Pais
+on Pais(paisId);
+
+DROP INDEX Rating.Ind_Prim_Rating;
+CREATE INDEX Ind_Prim_Rating
+on Rating(ratingId);
+
+DROP INDEX Quantidade.Ind_Prim_Quantidade;
+CREATE INDEX Ind_Prim_Quantidade
+on Quantidade(quantidadeId);
+
+DROP INDEX TipoDeProduto.Ind_Prim_TipoDeProduto;
+CREATE INDEX Ind_Prim_TipoDeProduto
+on TipoDeProduto(tipoId);
+
+DROP INDEX Carrinho.Ind_Prim_Carrinho;
+CREATE INDEX Ind_Prim_Carrinho
+on Carrinho(carrinhoId);
+
+DROP INDEX Compra.Ind_Prim_Compra;
+CREATE INDEX Ind_Prim_Compra
+on Compra(compraId);
+
+DROP INDEX TipoDePagamento.Ind_Prim_TipoDePagamento;
+CREATE INDEX Ind_Prim_TipoDePagamento
+on TipoDePagamento(tipoId);
+
+DROP INDEX TipoDeEnvio.Ind_Prim_TipoDeEnvio;
+CREATE INDEX Ind_Prim_TipoDeEnvio
+on TipoDeEnvio(tipoId);
 
 /*INSERTS*/
 
