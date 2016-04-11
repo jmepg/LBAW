@@ -39,6 +39,7 @@ CREATE TABLE Produto(
 	alcool FLOAT NOT NULL, 
 	volume FLOAT NOT NULL,
 	stock FLOAT NOT NULL,
+    paisId FOREIGN KEY REFERENCES Pais(paisId),
     tipoId FOREIGN KEY REFERENCES TipoDeProduto(tipoId)	
 );
 
@@ -69,7 +70,6 @@ CREATE TABLE TipoDeProduto(
 DROP TABLE if exists Pais;
 CREATE TABLE Pais(
     paisId SERIAL AUTO_INCREMENT PRIMARY KEY,
-	produtoId REFERENCES Produto(produtoId),
 	pais TEXT NOT NULL
 );
 
@@ -196,7 +196,9 @@ WHERE (Produto.produtoId = Compra_Produto.produtoId) AND (Compra_Produto.compraI
 SELECT Carrinho.* FROM ClienteRegistado 
 WHERE ClienteRegistado.userId = Carrinho.userId;
 
-/*Selecionar carrinho da Compra*/
+/*Selecionar produto por pais*/
+SELECT Produto* FROM Produto, Pais
+WHERE Produto.paisId = Pais.paisId;
 
 /*INDEXES*/
 
