@@ -26,7 +26,7 @@ CREATE TABLE ClienteRegistado(
 );
 
 ALTER TABLE ClienteRegistado(
-ADD CHECK(dataDeNascimento>0) 
+ADD CONSTRAINT dataValida CHECK(dataDeNascimento>0) 
 )
 
 DROP TABLE if exists ClientePremium;
@@ -50,9 +50,9 @@ CREATE TABLE Produto(
 
 ALTER TABLE Produto 
 (
-ADD CHECK(alcool >0),
-ADD CHECK(volume >0),
-ADD CHECK(volume >0)   
+ADD CONSTRAINT alcoolValido CHECK(alcool >0),
+ADD CONSTRAINT volumevalido CHECK(volume >0),
+ADD CONSTRAINT precoValido CHECK(preco >0)   
 );
 
 DROP TABLE if exists Comentario;
@@ -104,13 +104,9 @@ produtoId REFERENCES Produto(produtoId)
 
 ALTER TABLE Quantidade
 (
-ADD CHECK(numero>0)    
+ADD CONSTRAINT numeroValido CHECK(numero>0)    
 );
 
-ALTER TABLE Quantidade
-(
-ADD CHECK(numero >0),
-);
 
 DROP TABLE if exists Carrinho;
 CREATE TABLE Carrinho(
@@ -165,5 +161,19 @@ compraId FOREIGN KEY Compra(compraId),
 tipo TEXT NOT NULL    
 );
 
+/*INDEXES*/n
+
+CREATE CLUSTERED INDEX 
+
+DROP INDEX Utilizador.IND_USERNAME_PASSWORD;
+CREATE INDEX IND_USERNAME_PASSWORD
+ON Utilizador (password);
+
+DROP INDEX Produto.IND_PRODUTO_PRECO;
+CREATE INDEX IND_PRODUTO_PRECO
+on Produto(preco);
+
+CREATE INDEX IND_COMENTARIO_TEXT
+on Comentario(texto);
 
 
