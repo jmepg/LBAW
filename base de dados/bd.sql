@@ -3,17 +3,15 @@
 PRAGMA foreign_keys = ON;
 
 DROP TABLE if exists Utilizador;
-CREATE TABLE Utilizador(
-    
+CREATE TABLE Utilizador(    
 	userId SERIAL AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR UNIQUE,
-	password VARCHAR NOT NULL,
+	password VARCHAR NOT NULL
 );
 
 DROP TABLE if exists Administrador;
-CREATE TABLE Administrador
-(
-userId FOREIGN KEY REFERENCES Utilizador(userId)
+CREATE TABLE Administrador(
+	userId FOREIGN KEY REFERENCES Utilizador(userId)
 );
 
 DROP TABLE if exists ClienteRegistado;
@@ -22,12 +20,12 @@ CREATE TABLE ClienteRegistado(
 	nome TEXT NOT NULL,
 	email TEXT NOT NULL,
 	dataDeNascimento DATE NOT NULL,
-	userState TEXT NOT NULL, 
+	userState TEXT NOT NULL 
 );
 
 ALTER TABLE ClienteRegistado(
-ADD CONSTRAINT dataValida CHECK(dataDeNascimento>0) 
-)
+	ADD CONSTRAINT dataValida CHECK(dataDeNascimento>0) 
+);
 
 DROP TABLE if exists ClientePremium;
 CREATE TABLE ClientePremium(
@@ -111,35 +109,35 @@ ADD CONSTRAINT numeroValido CHECK(numero>0)
 DROP TABLE if exists Carrinho;
 CREATE TABLE Carrinho(
 	carrinhoId SERIAL PRIMARY KEY,
-	userId REFERENCES ClienteRegistado(userId) ON DELETE CASCADE,
+	userId REFERENCES ClienteRegistado(userId) ON DELETE CASCADE
 );
 
 DROP TABLE if exists Carrinho_Produto;
 CREATE TABLE Carrinho_Produto
 (
-carrinhoId FOREIGN KEY References Carrinho(carrinhoId),
-produtoId FOREIGN KEY References Produto(produtoId)
+	carrinhoId FOREIGN KEY References Carrinho(carrinhoId),
+	produtoId FOREIGN KEY References Produto(produtoId)
 );
 
 
 DROP TABLE if exists Compra;
 CREATE TABLE Compra(
 	compraId SERIAL AUTO_INCREMENT PRIMARY KEY,
-	userId FOREIGN KEY REFERENCES ClienteRegistado(userId) ON DELETE CASCADE,
+	userId FOREIGN KEY REFERENCES ClienteRegistado(userId) ON DELETE CASCADE
 );
 
 DROP TABLE if exists Compra_Produto;
 CREATE TABLE Compra_Produto
 (
-compraId FOREIGN KEY REFERENCES Compra(compraId),
-produtoId FOREIGN KEY REFERENCES Produto(password)    
+	compraId FOREIGN KEY REFERENCES Compra(compraId),
+	produtoId FOREIGN KEY REFERENCES Produto(password)    
 ); 
 
 DROP TABLE if exists Compra_Carrinho;
 CREATE TABLE Compra_Carrinho
 (
-compraId FOREIGN KEY REFERENCES Compra(compraId),
-carrinhoId FOREIGN KEY REFERENCES Carrinho(carrinhoId)   
+	compraId FOREIGN KEY REFERENCES Compra(compraId),
+	carrinhoId FOREIGN KEY REFERENCES Carrinho(carrinhoId)   
 );
 
 
@@ -184,7 +182,11 @@ insert into Administrador values(1);
 
 insert into ClienteRegistado values(2, 'Tiago', 'tiaguinho@gamil.com', '1990-01-01', 'Ativo');
 insert into ClienteRegistado values(3, 'Raul', 'costinha@gamil.com', '1987-05-11', 'Ativo');
-wines beers spirits ciders
+
+insert into TipoDeProduto values(1, 'Wine');
+insert into TipoDeProduto values(2, 'Beer');
+insert into TipoDeProduto values(3, 'Spirit');
+insert into TipoDeProduto values(4, 'Cider');
 
 insert into Produto values(1, 'Adelaide Hills McLaren Vale Chardonnay', 'path', 8.08, 'Fresh and elegant, this wine has good fruit weight and aromas including apple and white peach, a lovely texture and a savoury, mealy edge.
 The acidity is nicely balanced, giving the wine good length on the finish.', 12.7, 75, 30, 1);
@@ -240,12 +242,6 @@ Suitable for vegetarians, vegans and coeliacs.', 6.5, 50, 83, 4);
 
 insert into Comentario values(1, 2, 3, '2016-04-11', 'adoro <3');
 
-insert into TipoDeProduto values(1, 'Wine');
-insert into TipoDeProduto values(2, 'Beer');
-insert into TipoDeProduto values(3, 'Spirit');
-insert into TipoDeProduto values(4, 'Cider');
-
-
 insert into Pais values(1, 1, 'Australia');
 insert into Pais values(2, 2, 'Australia');
 insert into Pais values(3, 3, 'Italy');
@@ -264,6 +260,6 @@ insert into Pais values(15, 15, 'United Kingdom');
 insert into Pais values(17, 17, 'Australia');
 insert into Pais values(18, 18, 'United Kingdom');
 insert into Pais values(19, 19, 'Kentucky');
-insert into Pais values(19, 19, 'England');
+insert into Pais values(20, 20, 'England');
 
 
