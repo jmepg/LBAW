@@ -205,7 +205,7 @@ WHERE Produto.paisId = Pais.paisId;
 /*DELETES*/
 
 /*Eliminar quantidade escolhida de um dado produto*/
-DELETE Carrinho_Produto.produtoId,Quantidade.* FROM Quantidade,
+DELETE Carrinho_Produto.produtoId, Quantidade.* FROM Quantidade,
 WHERE Carrinho_Produto.produtoId = Quantidade.produtoId;
 
 /*Eliminar Ratings de um dado produto*/
@@ -213,17 +213,27 @@ DELETE * FROM Rating
 WHERE Produto.produtoId = Rating.produtoId;
 
 
+
 /*UPDATES*/
 
 /*Update nome e email de um cliente*/
-UPDATE ClienteRegistado, Utilizador SET (nome, email) =
-    (SELECT nome, email FROM ClienteRegistado
-     WHERE Utilizador.id = ClienteRegistado.sales_id);
+UPDATE  Utilizador SET nome = 'EU', email= 'eu@gmail.com' FROM Utilizador,ClienteRegistado
+     WHERE Utilizador.id = ClienteRegistado.sales_id;
 
 /*Update de rating de um produto*/
-UPDATE Rating, Produto SET (rate) =
-    (SELECT rate FROM Rating
-     WHERE Rating.produtoId = Produto.produtoId);
+UPDATE Rating SET rate='4.5' FROM Rating,Produto
+     WHERE Rating.produtoId = Produto.produtoId;
+
+/*Update comentario de um produto feito por um Cliente*/
+UPDATE Comentario SET texto='novoComent' FROM Comentario,Produto,ClienteRegistado
+     WHERE(Comentario.produtoId = Produto.produtoId) AND (Comentario.userId = ClienteRegistado.userId);
+
+/*Update preco de produto com tipo BEERS*/
+UPDATE Produto SET preco=preco*1.15 FROM Produto,TipoDeProduto
+    WHERE TipoDeProduto.tipo ='Beer' AND Produto.tipoId = TipoDeProduto.tipoId;
+
+/**/
+UPDATE 
 
 /*INDEXES*/
 
@@ -276,6 +286,11 @@ on TipoDePagamento(tipoId);
 DROP INDEX TipoDeEnvio.Ind_Prim_TipoDeEnvio;
 CREATE INDEX Ind_Prim_TipoDeEnvio
 on TipoDeEnvio(tipoId);
+
+CLUSTER Produto USING preco;
+CLUSTER Pais USING nome;
+
+
 
 /*INSERTS*/
 
